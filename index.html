@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EERE GovDelivery Subscriber Form</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      (function() {
+          var so = document.createElement('script');
+          so.type = 'text/javascript';
+          so.async = true;
+          so.src = '//apps1.eere.energy.gov/includes/ga/eere.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(so, s);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="client/css/styles.min.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-5 col-lg-5 col-centered">
+
+<div id="app">
+
+
+    <form method="get" id="form-subscribe" accept-charset="utf-8" class="form">
+
+        <div class="form-group">
+            <label for="e" class="control-label">Email:</label>
+            <input type="text" name="e" id="e" class="form-control">
+        </div>
+
+        <div class="form-group">
+            Select topics of interest (select at least one, select all that apply)
+            <div class="checkbox">
+                <label><input type="checkbox" name="t[]" value="USEERE_1"> Renewables</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" name="t[]" value="USEERE_2"> Efficiency</label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            What sector best describes you? (select at least one, select all that apply)
+            <div class="checkbox">
+                <label><input type="checkbox" name="____" value="____"> Business & industry</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" name="____" value="____"> Federal government</label>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Subscribe" id="submit" class="btn btn-success">
+
+        <div id="response" class="hidden"></div>
+    </form>
+
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+<script src="client/js/app.min.js"></script>
+
+</body>
+</html>
