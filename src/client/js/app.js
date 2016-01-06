@@ -15,11 +15,14 @@ $(document).ready(function() {
         var url = 'https://stage-api.govdelivery.com/api/add_script_subscription'
         var apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
 
-        $('<input />', {
-                'name': 'k',
-                'value': apikey,
-                'type': 'hidden'
-            }).appendTo('#form-subscribe')
+        if (!document.getElementById('api') ) {
+            $('<input />', {
+                    'id': 'api',
+                    'name': 'k',
+                    'value': apikey,
+                    'type': 'hidden'
+                }).appendTo('#form-subscribe')
+        }
 
         $.ajax({
             url: url,
