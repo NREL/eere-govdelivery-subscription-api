@@ -26,7 +26,7 @@ gulp.task('watch', function() {
 
 
 gulp.task('usemin', function() {
-   gulp.src('src/index.html')
+    return gulp.src('src/index.html')
         .pipe(usemin({
             //assetsDir: 'public',
             css: [cssmin()],
@@ -37,9 +37,9 @@ gulp.task('usemin', function() {
 
 // lint js
 gulp.task('jshint', function() {
-  return gulp.src('src/client/js/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    return gulp.src('src/client/js/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 })
 
 // Concat & Minify JS
@@ -67,13 +67,13 @@ gulp.task('clean', function() {
 });
 
 gulp.task('gh-pages', function() {
-  return gulp.src('./dist/**/*')
-    .pipe(ghPages());
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
 });
 
-gulp.task('deploy', [
-    'build', 'gh-pages'
-]);
+gulp.task('deploy', function(cb){
+    runSequence('build', ['gh-pages'], cb)
+});
 
 gulp.task('build', function(cb){
     runSequence('clean', ['jshint', 'usemin'], cb)
