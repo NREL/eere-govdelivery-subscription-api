@@ -4,7 +4,25 @@
  *  Author: Michael Oakley <moakley.oakley@nrel.gov>
  */
 
- /* jshint unused:false, debug:true */
+/* jshint unused:false, debug:true */
+
+
+/**
+ * Enable the submit button and show some debugging (must be in global scope)
+ *
+ * @param  {Object} response JSON returned from AJAX
+ * @return none
+ */
+var jsonpcallback = function(response) {
+    $('input[type=submit]').removeAttr('disabled')
+    $('#response').removeClass('hidden')
+
+    var text = JSON.stringify(response, null, '&nbsp;')
+
+    $('#response').html('<strong>' + response.message + '</strong><br>' + text)
+}
+
+
 $(document).ready(function() {
     'use strict'
 
@@ -39,20 +57,7 @@ $(document).ready(function() {
         return resultsArray
     }
 
-    /**
-     * Enable the submit button and show some debugging
-     *
-     * @param  {Object} response JSON returned from AJAX
-     * @return none
-     */
-    var jsonpcallback = function(response) {
-        $('input[type=submit]').removeAttr('disabled')
-        $('#response').removeClass('hidden')
 
-        var text = JSON.stringify(response, null, '&nbsp;')
-
-        $('#response').html('<strong>' + response.message + '</strong><br>' + text)
-    }
 
     /**
      *
