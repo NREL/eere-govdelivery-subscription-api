@@ -13,14 +13,14 @@
  * @param  {Object} response JSON returned from AJAX
  * @return none
  */
-var jsonpcallback = function(response) {
-    $('input[type=submit]').removeAttr('disabled')
-    $('#response').removeClass('hidden')
+// var jsonpcallback = function(response) {
+//     $('input[type=submit]').removeAttr('disabled')
+//     $('#response').removeClass('hidden')
 
-    var text = JSON.stringify(response, null, '&nbsp;')
+//     var text = JSON.stringify(response, null, '&nbsp;')
 
-    $('#response').html('<strong>' + response.message + '</strong><br>' + text)
-}
+//     $('#response').html('<strong>' + response.message + '</strong><br>' + text)
+// }
 
 
 $(document).ready(function() {
@@ -75,6 +75,14 @@ $(document).ready(function() {
           , apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
           , data
 
+        var showMessage = function(msg) {
+            $('input[type=submit]').removeAttr('disabled')
+            $('#response').removeClass('hidden')
+
+            $('#response').html(msg)
+        }
+
+
         if (!document.getElementById('api') ) {
             $('<input />', {
                     'id': 'api'
@@ -88,12 +96,56 @@ $(document).ready(function() {
 
         data = mergeParams( data )
 
-        $.ajax({
+        var dfd = $.ajax({
             url: url
           , data: data
           , dataType: 'jsonp'
           , jsonp: 'c'
           , jsonpCallback: 'jsonpcallback'
+        })
+
+
+        dfd.done( function( response ){
+            var msg
+
+            // handle API returning error messages inside JSON with server 200 response
+            if( response.errors ) {
+
+                msg = '<div class="bg-danger"><p><strong>There was a problem submitting the form.</strong></p>'
+                msg += '<ul>'
+
+                Object.keys( response.errors ).forEach( function( k ) {
+                        response.errors[k].forEach( function(txt){
+                            msg += '<li>' + txt + '</li>'
+                        })
+                })
+
+                msg += '</ul></div>'
+
+            } else if ( response.message == "Topic not found.") {
+
+                msg = '<p class="bg-danger"><strong>There was a problem with the form. Topic not found.</strong></p>'
+
+            } else {
+                // actual success!
+                $('#form-subscribe').fadeOut('fast')
+                msg = '<p><strong>You have been successfully subscribed. You should receive a confirmation email shortly.</strong></p>'
+            }
+
+
+            showMessage(msg)
+
+            // var text = JSON.stringify( response )
+
+
+        })
+
+
+        dfd.fail( function( response ){
+            showMessage('<p class="bg-danger"><strong>There was a problem submitting your information. Please contact the webmaster.</strong></p>')
+
+            var text = JSON.stringify( response, null, '&nbsp;' )
+            console.debug( 'ajax error:', response, text )
         })
 
         return false
