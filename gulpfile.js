@@ -1,6 +1,7 @@
 var gulp = require('gulp')
   , concat = require('gulp-concat')
   , uglify = require('gulp-uglify')
+  , sourcemaps = require('gulp-sourcemaps')
   , jshint = require('gulp-jshint')
   , rename = require('gulp-rename')
   , clean = require('gulp-clean')
@@ -46,9 +47,11 @@ gulp.task('jshint', function() {
 gulp.task('uglify', function(){
   return gulp.src('src/client/js/*.js')
         .pipe(concat('app.js'))
+        .pipe(sourcemaps.init())
         .pipe(rename('app.min.js'))
-        .pipe(gulp.dest('dist/client/js'))
         .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist/client/js'))
 })
 
 
