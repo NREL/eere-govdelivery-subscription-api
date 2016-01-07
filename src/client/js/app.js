@@ -36,8 +36,8 @@ $(document).ready(function() {
         var resultsArray = []
 
         // sort by name
-        objArray.sort( function( a, b ){
-            return a.name - b.name
+        objArray.sort( function( a, b ) {
+            return (a.name > b.name) ? 1 : ( (b.name > a.name) ? -1 : 0)
         })
 
         // prime the results array
