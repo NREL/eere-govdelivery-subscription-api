@@ -50,6 +50,7 @@ gulp.task('uglify', function(){
         .pipe(sourcemaps.init())
         .pipe(rename('app.min.js'))
         .pipe(uglify())
+        //.pipe(uglify( {compress: {drop_debugger:false} }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist/client/js'))
 })
