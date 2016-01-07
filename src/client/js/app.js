@@ -1,6 +1,6 @@
 /**
  *  Project: EERE GovDelivery Form Submission
- *  Description: Serializes the form and AJAx the data
+ *  Description: Serializes the form and AJAX the data
  *  Author: Michael Oakley <moakley.oakley@nrel.gov>
  */
 
