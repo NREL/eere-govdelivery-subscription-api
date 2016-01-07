@@ -30,8 +30,8 @@ gulp.task('usemin', function() {
     return gulp.src('src/index.html')
         .pipe(usemin({
             //assetsDir: 'public',
-            css: [cssmin()],
-            js: [uglify()]
+            css: [cssmin(), 'concat'],
+            js:  [uglify(), 'concat']
         }))
         .pipe(gulp.dest('dist'));
 });
