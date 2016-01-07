@@ -23,3 +23,6 @@ body {
     margin: 0 auto;
 }
 
+#response .bg-danger {
+    padding: 1em;
+}
