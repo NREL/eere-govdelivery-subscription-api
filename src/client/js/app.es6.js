@@ -4,24 +4,6 @@
  *  Author: Michael Oakley <moakley.oakley@nrel.gov>
  */
 
-/* jshint unused:false, debug:true */
-
-
-/**
- * Enable the submit button and show some debugging (must be in global scope)
- *
- * @param  {Object} response JSON returned from AJAX
- * @return none
- */
-// var jsonpcallback = function(response) {
-//     $('input[type=submit]').removeAttr('disabled')
-//     $('#response').removeClass('hidden')
-
-//     var text = JSON.stringify(response, null, '&nbsp;')
-
-//     $('#response').html('<strong>' + response.message + '</strong><br>' + text)
-// }
-
 
 $(document).ready(function() {
     'use strict'
@@ -32,11 +14,11 @@ $(document).ready(function() {
      * @param  {Array} objArray Array of objects
      * @return {Array}          Array of objects with unique name properties
      */
-    var mergeParams = function( objArray ) {
-        var resultsArray = []
+    const mergeParams = function( objArray ) {
+        let resultsArray = []
 
         // sort by name
-        objArray.sort( function( a, b ) {
+        objArray.sort( ( a, b ) => {
             return (a.name > b.name) ? 1 : ( (b.name > a.name) ? -1 : 0)
         })
 
@@ -44,10 +26,11 @@ $(document).ready(function() {
         resultsArray.push( objArray.shift() )
 
         // merge
-        objArray.forEach( function( o, i, a ){
-            var last  = resultsArray[resultsArray.length - 1]
+        objArray.forEach( o => {
+            let last  = resultsArray[resultsArray.length - 1]
+
             if ( o.name === last.name ) {
-                last.value += ',' + o.value
+                last.value += `, ${o.value}`
             } else {
                 resultsArray.push( o )
             }
@@ -58,24 +41,56 @@ $(document).ready(function() {
     }
 
 
+    /**
+     *
+     * Validate the form
+     *
+     */
+    $('#form-subscribe').validate({
+        rules: {
+            q_15675: {
+                required: true
+              , minlength: 1
+            }
+          , q_15655: {
+                required: true
+              , minlength: 1
+            }
+        }
+      , messages: {
+            e: 'A valid email is required'
+          , q_15675: 'At least one topic is required.'
+          , q_15655: 'At least one sector is required.'
+        }
+      , errorPlacement: function(error, element) {
+            if ( $(element).hasClass('require-one') ) {
+
+                $(element).parents('.form-group').children('.error-holder').append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
+      , submitHandler: SendData
+    })
 
     /**
      *
      * Send the form data by AJAX
      *
      */
-    $('#form-subscribe').submit(function(e) {
-
-        e.preventDefault()
+    //$('#form-subscribe').submit( e => {
+    function SendData(form) {
+        //e.preventDefault()
 
         $('input[type=submit]').attr('disabled', 'disabled')
         $('#response').addClass('hidden')
 
-        var url = 'https://stage-api.govdelivery.com/api/add_script_subscription'
+        const url = 'https://stage-api.govdelivery.com/api/add_script_subscription'
           , apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
-          , data
 
-        var showMessage = function(msg) {
+        let data = $.Deferred()
+
+        const showMessage = function(msg) {
             $('input[type=submit]').removeAttr('disabled')
             $('#response').removeClass('hidden')
 
@@ -96,7 +111,7 @@ $(document).ready(function() {
 
         data = mergeParams( data )
 
-        var dfd = $.ajax({
+        const dfd = $.ajax({
             url: url
           , data: data
           , dataType: 'jsonp'
@@ -105,8 +120,8 @@ $(document).ready(function() {
         })
 
 
-        dfd.done( function( response ){
-            var msg
+        dfd.done( response => {
+            let msg
 
             // handle API returning error messages inside JSON with server 200 response
             if( response.errors ) {
@@ -122,7 +137,7 @@ $(document).ready(function() {
 
                 msg += '</ul></div>'
 
-            } else if ( response.message == "Topic not found.") {
+            } else if ( response.message === 'Topic not found.') {
 
                 msg = '<p class="bg-danger"><strong>There was a problem with the form. Topic not found.</strong></p>'
 
@@ -141,15 +156,16 @@ $(document).ready(function() {
         })
 
 
-        dfd.fail( function( response ){
+        dfd.fail( response => {
             showMessage('<p class="bg-danger"><strong>There was a problem submitting your information. Please contact the webmaster.</strong></p>')
 
-            var text = JSON.stringify( response, null, '&nbsp;' )
+            const text = JSON.stringify( response, null, '&nbsp;' )
             console.debug( 'ajax error:', response, text )
         })
 
         return false
-    })
+    }
+    //})
 
 })
 
