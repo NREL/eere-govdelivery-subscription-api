@@ -38,47 +38,48 @@
 
         <div class="form-group">
             <label for="e" class="control-label">Email:</label>
-            <input type="text" name="e" id="e" class="form-control">
+            <input type="email" name="e" id="e" class="form-control" required>
         </div>
 
         <div class="form-group">
-
             <p><strong>Select topics of interest (select at least one, select all that apply)</strong></p>
 
+            <div class="error-holder"></div>
+
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23753"> Renewables</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23753"> Renewables</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23754"> Efficiency</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23754"> Efficiency</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23777"> Transportation</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23777"> Transportation</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23762"> Grid</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23762"> Grid</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23778"> Manufacturing</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23778"> Manufacturing</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23763"> National Labs</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23763"> National Labs</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23779"> Research & Development</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23779"> Research & Development</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23764"> Energy Education</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23764"> Energy Education</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15675" value="23780"> Career Planning</label>
+                <label><input type="checkbox" name="q_15675" class="require-one" value="23780"> Career Planning</label>
             </div>
 
         </div>
@@ -88,60 +89,62 @@
 
             <p><strong>What sector best describes you? (select at least one, select all that apply)</strong></p>
 
+            <div class="error-holder"></div>
+
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23713"> Business & industry</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23713"> Business & industry</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23714"> Federal government</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23714"> Federal government</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23733"> State government</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23733"> State government</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23755"> Local government</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23755"> Local government</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23773"> State & locally-focused group</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23773"> State & locally-focused group</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23756"> Non-governmental organization</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23756"> Non-governmental organization</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23757"> Academia</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23757"> Academia</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23758"> Consulting</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23758"> Consulting</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23759"> Finance</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23759"> Finance</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23774"> Conservation/environmental group</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23774"> Conservation/environmental group</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23760"> Association</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23760"> Association</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23775"> Think tank</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23775"> Think tank</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23776"> Media</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23776"> Media</label>
             </div>
 
             <div class="checkbox">
-                <label><input type="checkbox" name="q_15655" value="23761"> Other</label>
+                <label><input type="checkbox" name="q_15655" class="require-one" value="23761"> Other</label>
             </div>
 
         </div>
@@ -159,6 +162,8 @@
         </div>
     </div>
 </div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 
 <!-- build:js client/js/app.min.js -->
 <script src="client/js/app.js"></script>
