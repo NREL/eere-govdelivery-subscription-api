@@ -23,6 +23,12 @@ body {
     margin: 0 auto;
 }
 
-#response .bg-danger {
+.bg-danger {
+    padding: 1em;
+}
+
+label.error {
+    background-color: #f2dede;
+    display: block;
     padding: 1em;
 }
