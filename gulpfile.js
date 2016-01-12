@@ -79,25 +79,30 @@ gulp.task('cssmin', function () {
         .pipe(cssmin())
         .pipe(rename({suffix: '.min.css'}))
         .pipe(gulp.dest('dist/client/css'));
-});
+})
 
 
 // remove anything in dist
 gulp.task('clean', function() {
     return gulp.src(['dist/*'], {read: false})
-        .pipe(clean());
-});
+        .pipe(clean())
+})
+
+gulp.task('clean-es5', function () {
+    return gulp.src('src/client/js/app.js', {read: false})
+        .pipe(clean())
+})
 
 gulp.task('gh-pages', function() {
     return gulp.src('./dist/**/*')
         .pipe(ghPages());
-});
+})
 
 gulp.task('deploy', function(cb){
     runSequence('build', ['gh-pages'], cb)
-});
+})
 
 gulp.task('build', function(cb){
-    runSequence('clean', 'lint','babel', ['usemin'], cb)
-});
+    runSequence('clean', 'lint','babel', 'usemin', 'clean-es5', cb)
+})
 
