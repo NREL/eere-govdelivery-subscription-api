@@ -14,7 +14,7 @@ $(document).ready(function() {
      * @param  {Array} objArray Array of objects
      * @return {Array}          Array of objects with unique name properties
      */
-    const mergeParams = function( objArray ) {
+    function mergeParams( objArray ) {
         let resultsArray = []
 
         // sort by name
@@ -70,7 +70,7 @@ $(document).ready(function() {
                 error.insertAfter(element);
             }
         }
-      , submitHandler: SendData
+      , submitHandler: sendData
     })
 
     /**
@@ -78,9 +78,7 @@ $(document).ready(function() {
      * Send the form data by AJAX
      *
      */
-    //$('#form-subscribe').submit( e => {
-    function SendData(form) {
-        //e.preventDefault()
+    function sendData() {
 
         $('input[type=submit]').attr('disabled', 'disabled')
         $('#response').addClass('hidden')
@@ -88,7 +86,8 @@ $(document).ready(function() {
         const url = 'https://stage-api.govdelivery.com/api/add_script_subscription'
           , apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
 
-        let data = $.Deferred()
+        let dfd = $.Deferred()
+          , data = []
 
         const showMessage = function(msg) {
             $('input[type=submit]').removeAttr('disabled')
@@ -98,7 +97,7 @@ $(document).ready(function() {
         }
 
 
-        if (!document.getElementById('api') ) {
+        if ( !document.getElementById('api') ) {
             $('<input />', {
                     'id': 'api'
                   , 'name': 'k'
@@ -111,7 +110,7 @@ $(document).ready(function() {
 
         data = mergeParams( data )
 
-        const dfd = $.ajax({
+        dfd = $.ajax({
             url: url
           , data: data
           , dataType: 'jsonp'
@@ -129,9 +128,9 @@ $(document).ready(function() {
                 msg = '<div class="bg-danger"><p><strong>There was a problem submitting the form.</strong></p>'
                 msg += '<ul>'
 
-                Object.keys( response.errors ).forEach( function( k ) {
-                        response.errors[k].forEach( function(txt){
-                            msg += '<li>' + txt + '</li>'
+                Object.keys( response.errors ).forEach(  k => {
+                        response.errors[k].forEach( txt => {
+                            msg += `<li> ${txt} </li>`
                         })
                 })
 
@@ -144,7 +143,7 @@ $(document).ready(function() {
             } else {
                 // actual success!
                 $('#form-subscribe').fadeOut('fast')
-                msg = '<p><strong>You have been successfully subscribed. You should receive a confirmation email shortly.</strong></p>'
+                msg = '<p class="bg-success"><strong>You have been successfully subscribed. You should receive a confirmation email shortly.</strong></p>'
             }
 
 
@@ -165,7 +164,6 @@ $(document).ready(function() {
 
         return false
     }
-    //})
 
 })
 
