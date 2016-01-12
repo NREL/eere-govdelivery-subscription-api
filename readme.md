@@ -4,7 +4,7 @@ This form subscribes users to the GovDelivery topic specified in the 't' paramet
 
 It uses the GovDelivery add_script_subscription JSON API.
 
-This project uses gulp.js for task automation.
+It uses gulp.js for task automation.
 
 
 ## Install
@@ -13,6 +13,10 @@ This project uses gulp.js for task automation.
 $ git clone https://github.com/NREL/eere-govdelivery-subscription-api
 $ npm install
 ```
+
+## Development
+
+Work in the ```src/``` folder. You can manually transpile your ES6 syntax back to ES5 using ```gulp babel```. The ```gulp watch``` task monitors changes in the src folder and runs the build task.
 
 ## Build
 
