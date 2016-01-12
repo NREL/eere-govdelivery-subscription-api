@@ -14,7 +14,7 @@
 
 
 body {
-    padding-top: 2em;
+    padding-top: 0;
     font-family: 'Avenir LT W02 35 Light';
 }
 
@@ -32,4 +32,27 @@ label.error {
     background-color: #f2dede;
     display: block;
     padding: 1em;
+}
+
+.page-title {
+    font-family: "Avenir LT W02 35 Light",verdana,sans-serif;
+    font-size: 25px;
+    line-height: 30px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Avenir LT W02 85 Heavy",verdana,sans-serif;
+    font-weight: normal;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.btn {
+    text-transform: uppercase;
+}
+
+label {
+    font-weight: bold;
 }
