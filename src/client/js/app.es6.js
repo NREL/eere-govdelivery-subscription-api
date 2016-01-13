@@ -48,19 +48,21 @@ $(document).ready(function() {
      */
     $('#form-subscribe').validate({
         rules: {
-            q_15675: {
+            //q_15675: {
+            q_43136: {
                 required: true
               , minlength: 1
             }
-          , q_15655: {
+          //, q_15655: {
+          , q_43156: {
                 required: true
               , minlength: 1
             }
         }
       , messages: {
             e: 'A valid email is required'
-          , q_15675: 'At least one topic is required.'
-          , q_15655: 'At least one sector is required.'
+          , q_43136: 'At least one topic is required.'
+          , q_43156: 'At least one sector is required.'
         }
       , errorPlacement: function(error, element) {
             if ( $(element).hasClass('require-one') ) {
@@ -83,8 +85,9 @@ $(document).ready(function() {
         $('input[type=submit]').attr('disabled', 'disabled')
         $('#response').addClass('hidden')
 
-        const url = 'https://stage-api.govdelivery.com/api/add_script_subscription'
-          , apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
+        const url = 'https://api.govdelivery.com/api/add_script_subscription'
+        //, apikey = 't2iRUf5kNknlGQAO3H_XTbPrGg1sOIo_J1Me_d9vuzKXyiLzvjOakJOjuiJ4b4JinRWzNcik37EtO_zzEflbow'
+          , apikey = 'LZuTL6jZ1pZzS_KwNdH05x-ejiHS9M5-mv1XGZpDuwpbolkoENdzlz7yzd_btSAG4GG7doJI-sllI2bsCwXe8g'
 
         let dfd = $.Deferred()
           , data = []
