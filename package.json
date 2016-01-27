@@ -24,6 +24,7 @@
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
+    "gulp-delete-file": "^1.0.2",
     "gulp-eslint": "^1.1.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-jshint": "^2.0.0",
@@ -36,6 +37,5 @@
     "run-sequence": "^1.1.5"
   },
   "dependencies": {
-    "gulp-delete-file": "^1.0.2"
   }
 }
